@@ -12,7 +12,7 @@ const char AİDAT_ADRESİ[] = "/home/enes/Masaüstü/aidat.txt";
 const char TOPLAM_ADRESİ[] = "/home/enes/Masaüstü/toplam.txt";
 
 
-//Struchlar
+//Structlar
 struct daire {
     char ad[128];
     char soyad[128];
