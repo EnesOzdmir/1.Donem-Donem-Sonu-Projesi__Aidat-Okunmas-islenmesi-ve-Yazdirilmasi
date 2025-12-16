@@ -1,0 +1,3 @@
+/home/enes/CLionProjects/gazi_birinci_proje/cmake-build-debug/CMakeFiles/gazi_birinci_proje.dir
+/home/enes/CLionProjects/gazi_birinci_proje/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/enes/CLionProjects/gazi_birinci_proje/cmake-build-debug/CMakeFiles/rebuild_cache.dir

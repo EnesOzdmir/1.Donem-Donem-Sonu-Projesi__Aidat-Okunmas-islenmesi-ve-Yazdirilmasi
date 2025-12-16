@@ -1,0 +1,27 @@
+{
+	"bmi-installation" : null,
+	"compiler-frontend-variant" : "GNU",
+	"compiler-id" : "GNU",
+	"compiler-simulate-id" : "",
+	"config" : "Debug",
+	"cxx-modules" : {},
+	"database-info" : null,
+	"dir-cur-bld" : "/home/enes/CLionProjects/gazi_birinci_proje/cmake-build-debug",
+	"dir-cur-src" : "/home/enes/CLionProjects/gazi_birinci_proje",
+	"dir-top-bld" : "/home/enes/CLionProjects/gazi_birinci_proje/cmake-build-debug",
+	"dir-top-src" : "/home/enes/CLionProjects/gazi_birinci_proje",
+	"exports" : [],
+	"forward-modules-from-target-dirs" : [],
+	"include-dirs" : [],
+	"language" : "CXX",
+	"linked-target-dirs" : [],
+	"module-dir" : "/home/enes/CLionProjects/gazi_birinci_proje/cmake-build-debug/CMakeFiles/gazi_birinci_proje.dir",
+	"sources" : 
+	{
+		"CMakeFiles/gazi_birinci_proje.dir/main.cpp.o" : 
+		{
+			"language" : "CXX",
+			"source" : "/home/enes/CLionProjects/gazi_birinci_proje/main.cpp"
+		}
+	}
+}
