@@ -1,4 +1,5 @@
 //Includelar
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -10,9 +11,10 @@
 //Constlar
 const char AİDAT_ADRESİ[] = "/home/enes/Masaüstü/aidat.txt";
 const char TOPLAM_ADRESİ[] = "/home/enes/Masaüstü/toplam.txt";
+const char ISLEM_SAYİSİ = 15; //Hepsi Farklıysa Önlem Olması için doğru yazın.
 
 
-//Structlar
+//Struchlar
 struct daire {
     char ad[128];
     char soyad[128];
@@ -40,7 +42,7 @@ void yazdir(struct daire bilgiler[], int kullanici_sayisi);
 
 
 int main(void) {
-    struct daire kayitlar[15];
+    struct daire kayitlar[ISLEM_SAYİSİ];
     int kullanici_sayisi = 0;
 
     ekle(kayitlar,&kullanici_sayisi);
@@ -56,7 +58,7 @@ void ekle(struct daire* kayitlar,int* kullanici_sayisi) {
     FILE *dosya = fopen(AİDAT_ADRESİ, "r");
 
     //Önlem olsun diye konuldu Bknz: Bellek rastgele tam sayı atama
-    for (int i = 0; i < 15; i++) {
+    for (int i = 0; i < ISLEM_SAYİSİ; i++) {
         kayitlar[i].ad[0] = '\0';
         kayitlar[i].soyad[0] = '\0';
         kayitlar[i].aidat = 0.0;
@@ -67,9 +69,9 @@ void ekle(struct daire* kayitlar,int* kullanici_sayisi) {
         kesme(&geçici_kayit, satir_verisi);
 
         // Proje ödevi dahilinde 15 istek sınırlandırılması için yapılmıştır.
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < ISLEM_SAYİSİ+1; i++) {
             // Yine proje ödevi yüzünden max 15 kişi olabilceğinden Index 15(Kişi sayisi - 1) olamacağından 16 da otomatik kişi eklemesi için yapılmıştır.
-            if (i == 15) {
+            if (i == ISLEM_SAYİSİ) {
                 kayitlar[(*kullanici_sayisi)] = geçici_kayit;
                 *kullanici_sayisi += 1;
             }
