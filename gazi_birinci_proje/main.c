@@ -11,7 +11,7 @@
 //Constlar
 const char AİDAT_ADRESİ[] = "/home/enes/Masaüstü/aidat.txt";
 const char TOPLAM_ADRESİ[] = "/home/enes/Masaüstü/toplam.txt";
-const char ISLEM_SAYİSİ = 15; //Hepsi Farklıysa Önlem Olması için doğru yazın.
+const char ISLEM_SAYİSİ = 15; //Hepsi Farklıysa Önlem Olması için doğru yazın. Proje 15 sınırı olduğundan çok önem verilmemiştir
 
 
 //Struchlar
