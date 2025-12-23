@@ -1,27 +1,22 @@
-//Includelar
+// Include'lar
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-//Definelar
-
-//Macrolar
-
 //Constlar
 
-//Lütfen Tam Yolu Kopyaladınızı Kontrol ediniz
-const char AIDAT_ADRESI[] = " ";
-const char TOPLAM_ADRESI[] = " ";
+//Adresler
+const char AIDAT_ADRESI[] = "C:\\Users\\Cihan\\OneDrive\\Desktop\\aidat.txt";
+const char TOPLAM_ADRESI[] = "C:\\Users\\Cihan\\OneDrive\\Desktop\\toplam.txt";
+
 const char ISLEM_SAYISI = 15; //Hepsi Farklıysa Önlem Olması için doğru yazın. Proje 15 sınırı olduğundan çok önem verilmemiştir
 
-
-//Struchlar
+// Her bir daire sakini için isim, soyisim ve aidat bilgisini tutan yapı
 struct daire {
     char ad[128];
     char soyad[128];
     float aidat;
 };
-
 
 //Fonksiyonlar
 /*
@@ -31,31 +26,38 @@ struct daire {
  *
  * Kesme Fonksiyonu:
  * kesme fonksiyonu temel olarak verilen String veriyi düzenler ve
- * onu 'daire' tipindeki veri kümesini olarak döndürür.
+ * onu 'daire' tipindeki veri kümesi olarak döndürür.
  *
  * Yazdir Fonksiyonu:
  * yazdir fonksiyonu temel olarak 'daire' tipindeki diziyi düzenler ve
- * 'TOPLAM_ADRESI' diye tanımlanan yere çıktısı yazar.
+ * 'TOPLAM_ADRESI' diye tanımlanan yere çıktısını yazar.
  */
-void ekle(struct daire* kayitlar,int* kullanici_sayisi);
+
+//Fonksiyonları Çağır
+void ekle(struct daire* kayitlar, int* kullanici_sayisi);
 void kesme(struct daire *isleme, char veri[128]);
 void yazdir(struct daire bilgiler[], int kullanici_sayisi);
 
-
+//Ana Fonksiyon
 int main(void) {
-    struct daire kayitlar[ISLEM_SAYISI];
-    int kullanici_sayisi = 0;
+    struct daire kayitlar[ISLEM_SAYISI];  // Proje sınırı olan 15 kayıtlık veri kümesi oluşturulur
+    int kullanici_sayisi = 0; //Daire sayısını 0'dan başlat
 
-    ekle(kayitlar,&kullanici_sayisi);
+    //Ekle fonksiyonunu çağır
+    ekle(kayitlar, &kullanici_sayisi);
+    
+    //Yıllık aidatları toplam.txt dosyasına yazdır
     yazdir(kayitlar, kullanici_sayisi);
 
     return 0;
 }
 
+//Ekle Fonksiyonu
 void ekle(struct daire* kayitlar,int* kullanici_sayisi) {
-    char satir_verisi[128];
-    struct daire gecici_kayit;
+    char satir_verisi[128]; //Tüm satırları okusun diye konuldu
+    struct daire gecici_kayit; //Veri structin kopyasini olustur
 
+    //Dosyayı kontrol et
     FILE *dosya = fopen(AIDAT_ADRESI, "r");
 
     //Önlem olsun diye konuldu Bknz: Bellek rastgele tam sayı atama
@@ -83,6 +85,8 @@ void ekle(struct daire* kayitlar,int* kullanici_sayisi) {
             }
         }
     }
+
+    //Dosyayı Kapat
     fclose(dosya);
 }
 
@@ -127,6 +131,8 @@ void kesme(struct daire *isleme, char veri[128]) {
     }
 
 }
+
+//Yazdır Fonksiyonu
 void yazdir(struct daire bilgiler[], int kullanici_sayisi) {
     FILE *dosya = fopen(TOPLAM_ADRESI, "w");
 
@@ -145,5 +151,6 @@ void yazdir(struct daire bilgiler[], int kullanici_sayisi) {
                 bilgiler[i].aidat);
     }
 
+    //Dosyayı Kapat
     fclose(dosya);
 }
