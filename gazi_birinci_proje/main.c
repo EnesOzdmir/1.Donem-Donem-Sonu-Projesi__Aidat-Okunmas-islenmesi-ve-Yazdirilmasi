@@ -1,5 +1,4 @@
 //Includelar
-#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -9,9 +8,11 @@
 //Macrolar
 
 //Constlar
-const char AİDAT_ADRESİ[] = "/home/enes/Masaüstü/aidat.txt";
-const char TOPLAM_ADRESİ[] = "/home/enes/Masaüstü/toplam.txt";
-const char ISLEM_SAYİSİ = 15; //Hepsi Farklıysa Önlem Olması için doğru yazın. Proje 15 sınırı olduğundan çok önem verilmemiştir
+
+//Lütfen Tam Yolu Kopyaladınızı Kontrol ediniz
+const char AIDAT_ADRESI[] = " ";
+const char TOPLAM_ADRESI[] = " ";
+const char ISLEM_SAYISI = 15; //Hepsi Farklıysa Önlem Olması için doğru yazın. Proje 15 sınırı olduğundan çok önem verilmemiştir
 
 
 //Struchlar
@@ -34,7 +35,7 @@ struct daire {
  *
  * Yazdir Fonksiyonu:
  * yazdir fonksiyonu temel olarak 'daire' tipindeki diziyi düzenler ve
- * 'TOPLAM_ADRESİ' diye tanımlanan yere çıktısı yazar.
+ * 'TOPLAM_ADRESI' diye tanımlanan yere çıktısı yazar.
  */
 void ekle(struct daire* kayitlar,int* kullanici_sayisi);
 void kesme(struct daire *isleme, char veri[128]);
@@ -42,7 +43,7 @@ void yazdir(struct daire bilgiler[], int kullanici_sayisi);
 
 
 int main(void) {
-    struct daire kayitlar[ISLEM_SAYİSİ];
+    struct daire kayitlar[ISLEM_SAYISI];
     int kullanici_sayisi = 0;
 
     ekle(kayitlar,&kullanici_sayisi);
@@ -53,12 +54,12 @@ int main(void) {
 
 void ekle(struct daire* kayitlar,int* kullanici_sayisi) {
     char satir_verisi[128];
-    struct daire geçici_kayit;
+    struct daire gecici_kayit;
 
-    FILE *dosya = fopen(AİDAT_ADRESİ, "r");
+    FILE *dosya = fopen(AIDAT_ADRESI, "r");
 
     //Önlem olsun diye konuldu Bknz: Bellek rastgele tam sayı atama
-    for (int i = 0; i < ISLEM_SAYİSİ; i++) {
+    for (int i = 0; i < ISLEM_SAYISI; i++) {
         kayitlar[i].ad[0] = '\0';
         kayitlar[i].soyad[0] = '\0';
         kayitlar[i].aidat = 0.0;
@@ -66,18 +67,18 @@ void ekle(struct daire* kayitlar,int* kullanici_sayisi) {
 
     // fgets fonksiyonu satır satır çektiğinden kaynaklı while döngüsünde kontrollü döngü yapılmıştır
     while (fgets(satir_verisi, sizeof(satir_verisi), dosya) != NULL) {
-        kesme(&geçici_kayit, satir_verisi);
+        kesme(&gecici_kayit, satir_verisi);
 
         // Proje ödevi dahilinde 15 istek sınırlandırılması için yapılmıştır.
-        for (int i = 0; i < ISLEM_SAYİSİ+1; i++) {
+        for (int i = 0; i < ISLEM_SAYISI+1; i++) {
             // Yine proje ödevi yüzünden max 15 kişi olabilceğinden Index 15(Kişi sayisi - 1) olamacağından 16 da otomatik kişi eklemesi için yapılmıştır.
-            if (i == ISLEM_SAYİSİ) {
-                kayitlar[(*kullanici_sayisi)] = geçici_kayit;
+            if (i == ISLEM_SAYISI) {
+                kayitlar[(*kullanici_sayisi)] = gecici_kayit;
                 *kullanici_sayisi += 1;
             }
             // Uygun(aynı) hesap var aidatı toplama işlemi gerçekleştirilir.
-            else if (strcmp(kayitlar[i].ad, geçici_kayit.ad) == 0 &&strcmp(kayitlar[i].soyad, geçici_kayit.soyad) == 0)            {
-                kayitlar[i].aidat += geçici_kayit.aidat;
+            else if (strcmp(kayitlar[i].ad, gecici_kayit.ad) == 0 &&strcmp(kayitlar[i].soyad, gecici_kayit.soyad) == 0)            {
+                kayitlar[i].aidat += gecici_kayit.aidat;
                 break;
             }
         }
@@ -113,9 +114,9 @@ void kesme(struct daire *isleme, char veri[128]) {
             struchIndex = 2;
         }
         else if (struchIndex == 2 && veri[i+1] == '\n') {
-            char geciciDeğer[32];
-            strncpy(geciciDeğer, veri + sinir + 1 , i-sinir);
-            isleme->aidat = strtof(geciciDeğer, NULL);
+            char geciciDeger[32];
+            strncpy(geciciDeger, veri + sinir + 1 , i-sinir);
+            isleme->aidat = strtof(geciciDeger, NULL);
             sinir = i;
 
             struchIndex = 3;
@@ -127,7 +128,7 @@ void kesme(struct daire *isleme, char veri[128]) {
 
 }
 void yazdir(struct daire bilgiler[], int kullanici_sayisi) {
-    FILE *dosya = fopen(TOPLAM_ADRESİ, "w");
+    FILE *dosya = fopen(TOPLAM_ADRESI, "w");
 
     if (dosya == NULL) {
         printf("Dosya açılamadı!\n");
